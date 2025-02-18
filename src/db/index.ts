@@ -1,11 +1,14 @@
-import * as schema from "@api/db/schemas";
+import * as schema from "@api/db/schema";
 import { env, Logger } from "@api/utils";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
 import { Pool } from "pg";
 
 // eslint-disable-next-line import/no-mutable-exports
-export let db: ReturnType<typeof drizzle<typeof schema>>;
+import { PoolClient } from "pg";
+
+// eslint-disable-next-line import/no-mutable-exports
+export let db: ReturnType<typeof drizzle<typeof schema>> & { $client: Pool & PoolClient };
 
 export const initDb = async () => {
   const pool = await new Pool({

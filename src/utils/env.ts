@@ -4,8 +4,8 @@ import { z } from "zod";
 import "dotenv/config";
 
 const envSchema = z.object({
-  DATABASE_URL: z.string().default("postgres://user:password@127.0.0.1:5432/postgres"),
-  REDIS_URL: z.string().default("redis://127.0.0.1:6379/"),
+  DATABASE_URL: z.string().default("postgresql://default:RY5rnIp6btsi@ep-billowing-lab-a1oxpqbk-pooler.ap-southeast-1.aws.neon.tech/verceldb?sslmode=require"),
+  //REDIS_URL: z.string().default("redis://127.0.0.1:6379/"),
   PORT: z.coerce.number().default(8080),
   HOST: z.string().default("127.0.0.1"),
 });

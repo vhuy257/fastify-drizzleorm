@@ -1,6 +1,6 @@
 import { initDb } from "@api/db";
-import { testRoutes } from "@api/routes";
-import { env, Logger, Redis } from "@api/utils";
+import { investRoutes } from "@api/routes";
+import { env, Logger } from "@api/utils";
 import fastify from "fastify";
 import { middleware } from "./modules/middleware";
 
@@ -14,18 +14,36 @@ export const main = async () => {
   });
 
   await initDb();
-  await Redis.initialize();
+  //await Redis.initialize();
 
   server.register(middleware);
   server.register(import("@fastify/cors"), {
     maxAge: 600,
-    origin: true,
-    credentials: true,
+    origin: false,
+    credentials: false,
   });
 
+  await server.register(import('@fastify/swagger'))
+
+  await server.register(import('@fastify/swagger-ui'), {
+    routePrefix: '/documentation',
+    uiConfig: {
+      docExpansion: 'full',
+      deepLinking: false
+    },
+    uiHooks: {
+      onRequest: function (request, reply, next) { next() },
+      preHandler: function (request, reply, next) { next() }
+    },
+    staticCSP: true,
+    transformStaticCSP: (header) => header,
+    transformSpecification: (swaggerObject, request, reply) => { return swaggerObject },
+    transformSpecificationClone: true
+  })
+
   // Routes
-  server.register(testRoutes, {
-    prefix: `/${API_VERSION}/test`,
+  server.register(investRoutes, {
+    prefix: `/${API_VERSION}/invests`,
   });
 
   server.listen({ host: env.HOST, port: env.PORT }, (error, address) => {

@@ -1,4 +1,8 @@
 {
   "out": "./src/db/migrations",
-  "schema": "./src/db/schemas.ts"
+  "schema": "./src/db/schema.ts",
+  "dialect": "postgresql",
+  "dbCredentials": {
+    "url": "postgresql://default:RY5rnIp6btsi@ep-billowing-lab-a1oxpqbk-pooler.ap-southeast-1.aws.neon.tech/verceldb?sslmode=require"
+  }
 }
