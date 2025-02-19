@@ -2,7 +2,7 @@ import { investRoutes } from "@api/routes";
 import fastify from "fastify";
 import { middleware } from "./modules/middleware";
 import { initDb } from "./db";
-import { env, Logger } from "./utils";
+import { Logger } from "./utils";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const API_VERSION = "v1";
