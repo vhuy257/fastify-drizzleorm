@@ -5,14 +5,14 @@
   "main": "index.js",
   "repository": "https://github.com/Looskie/fastify-drizzle-quick-start.git",
   "author": "Cody Miller <50378828+Looskie@users.noreply.github.com>",
-  "license": "none",
+  "license": "UNLICENSED",
   "scripts": {
     "lint": "xo",
     "dev": "tsx watch --clear-screen=false src/index.ts",
     "prettier": "prettier --write .",
     "migrate": "drizzle-kit generate:pg",
     "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
-    "start": "node ../fastify-drizzleorm/dist/index.js"
+    "start": "node dist/index.js"
   },
   "devDependencies": {
     "@types/cli-color": "^2.0.6",
