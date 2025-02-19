@@ -3,6 +3,7 @@
     "module": "CommonJS",
     "target": "ESNext",
     "strict": true,
+    "declaration": true,
     "useUnknownInCatchVariables": true,
     "noImplicitOverride": true,
     "noFallthroughCasesInSwitch": true,
@@ -19,5 +20,8 @@
     },
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "./dist/**/*"]
+  "exclude": ["node_modules", "./dist/**/*"],
+  "include": [
+    "./src/**/*.ts"
+  ]
 }

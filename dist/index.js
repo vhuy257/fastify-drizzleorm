@@ -37,11 +37,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.main = void 0;
-const db_1 = require("./src/db");
 const routes_1 = require("./src/routes");
-const utils_1 = require("./src/utils");
 const fastify_1 = __importDefault(require("fastify"));
 const middleware_1 = require("./modules/middleware");
+const db_1 = require("./db");
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const API_VERSION = "v1";
 const main = async () => {
@@ -77,13 +76,13 @@ const main = async () => {
     server.register(routes_1.investRoutes, {
         prefix: `/${API_VERSION}/invests`,
     });
-    server.listen({ host: utils_1.env.HOST, port: utils_1.env.PORT }, (error, address) => {
-        if (error) {
-            utils_1.Logger.error("INIT", error.message);
-            throw new Error(error.message);
-        }
-        utils_1.Logger.info("INIT", `Server listening at ${address}`);
-    });
+    // server.listen({ host: env.HOST, port: env.PORT }, (error, address) => {
+    //   if (error) {
+    //     Logger.error("INIT", error.message);
+    //     throw new Error(error.message);
+    //   }
+    //   Logger.info("INIT", `Server listening at ${address}`);
+    // });
     return server;
 };
 exports.main = main;
