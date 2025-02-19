@@ -1,8 +1,8 @@
-import { initDb } from "@api/db";
 import { investRoutes } from "@api/routes";
 import { env, Logger } from "@api/utils";
 import fastify from "fastify";
 import { middleware } from "./modules/middleware";
+import { initDb } from "./db";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const API_VERSION = "v1";

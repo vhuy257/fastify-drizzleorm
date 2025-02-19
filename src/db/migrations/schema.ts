@@ -1,5 +1,4 @@
 import { pgTable, serial, varchar, timestamp, text, numeric, integer, foreignKey, boolean, primaryKey, pgEnum } from "drizzle-orm/pg-core"
-import { sql } from "drizzle-orm"
 
 export const role = pgEnum("role", ['viewer', 'editor', 'administrator'])
 export const status = pgEnum("status", ['active', 'inactive', 'archived'])
