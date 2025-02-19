@@ -46,7 +46,7 @@ export const main = async () => {
     prefix: `/${API_VERSION}/invests`,
   });
 
-  server.listen({ host: env.HOST, port: env.PORT }, (error, address) => {
+  server.listen({ port: 3000 }, (error, address) => {
     if (error) {
       Logger.error("INIT", error.message);
       throw new Error(error.message);
