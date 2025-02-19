@@ -7,6 +7,9 @@ import { Logger } from "./utils";
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const API_VERSION = "v1";
 
+const port = 3000;
+const host = ("RENDER" in process.env) ? `0.0.0.0` : `localhost`;
+
 export const main = async () => {
   const server = fastify({
     bodyLimit: 1_000_000,
@@ -46,10 +49,12 @@ export const main = async () => {
     prefix: `/${API_VERSION}/invests`,
   });
 
-  server.listen({ port: 3000 }, (error, address) => {
+  server.listen({host: host, port: port }, (error, address) => {
     if (error) {
-      Logger.error("INIT", error.message);
-      throw new Error(error.message);
+      // Logger.error("INIT", error.message);
+      // throw new Error(error.message);
+      server.log.error(error)
+      process.exit(1)
     }
 
     Logger.info("INIT", `Server listening at ${address}`);
