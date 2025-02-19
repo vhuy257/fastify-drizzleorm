@@ -1,6 +1,6 @@
-# fastify-drizzle-quick-start
+# fastify-drizzle-orm-quick-start
 
-Quick start for Fastify, TypeScript, ESlint, Prettier and DrizzleORM
+Quick start for Fastify, TypeScript, Swagger, Neon Postgresql, ESlint, Prettier and DrizzleORM
 
 
 ## Quick Start
