@@ -27,7 +27,8 @@ export const main = async () => {
     routePrefix: '/documentation',
     uiConfig: {
       docExpansion: 'full',
-      deepLinking: false
+      deepLinking: false,
+      displayRequestDuration: true,
     },
     uiHooks: {
       onRequest: function (request, reply, next) { next() },
