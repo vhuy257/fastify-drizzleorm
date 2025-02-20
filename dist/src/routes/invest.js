@@ -5,6 +5,7 @@ const db_1 = require("../db");
 const schema_1 = require("../db/schema");
 const investRoutes = (fastify, _, done) => {
     fastify.get("/", async (request, response) => {
+        console.log(db_1.db, 'db');
         const invest = await db_1.db.select().from(schema_1.investment);
         response.send({
             hello: "world",

@@ -41,8 +41,11 @@ const routes_1 = require("./src/routes");
 const fastify_1 = __importDefault(require("fastify"));
 const middleware_1 = require("./modules/middleware");
 const db_1 = require("./db");
+const utils_1 = require("./utils");
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const API_VERSION = "v1";
+const port = 3000;
+const host = ("RENDER" in process.env) ? `0.0.0.0` : `localhost`;
 const main = async () => {
     const server = (0, fastify_1.default)({
         bodyLimit: 1_000_000,
@@ -76,13 +79,15 @@ const main = async () => {
     server.register(routes_1.investRoutes, {
         prefix: `/${API_VERSION}/invests`,
     });
-    // server.listen({ host: env.HOST, port: env.PORT }, (error, address) => {
-    //   if (error) {
-    //     Logger.error("INIT", error.message);
-    //     throw new Error(error.message);
-    //   }
-    //   Logger.info("INIT", `Server listening at ${address}`);
-    // });
+    server.listen({ host: host, port: port }, (error, address) => {
+        if (error) {
+            // Logger.error("INIT", error.message);
+            // throw new Error(error.message);
+            server.log.error(error);
+            process.exit(1);
+        }
+        utils_1.Logger.info("INIT", `Server listening at ${address}`);
+    });
     return server;
 };
 exports.main = main;

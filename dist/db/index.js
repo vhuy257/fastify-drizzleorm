@@ -1,23 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.initDb = exports.db = void 0;
-//import * as schema from "../src/db/schema";
-const utils_1 = require("../src/utils");
-const node_postgres_1 = require("drizzle-orm/node-postgres");
-const pg_1 = require("pg");
-const initDb = async () => {
-    const pool = await new pg_1.Pool({
-        connectionString: process.env.DATABASE_URL,
-    })
-        .connect()
-        .then((client) => {
-        utils_1.Logger.info("INIT", "Connected to database");
-        return client;
-    })
-        .catch((error) => {
-        utils_1.Logger.error("INIT", `Failed to connect to database ${String(error)}}`);
-        throw new Error(`Failed to connect to database ${String(error)}`);
-    });
-    exports.db = (0, node_postgres_1.drizzle)({ client: pool });
+const neon_http_1 = require("drizzle-orm/neon-http");
+const serverless_1 = require("@neondatabase/serverless");
+const dotenv_1 = require("dotenv");
+(0, dotenv_1.config)({ path: ".env" }); // or .env.local
+const sql = (0, serverless_1.neon)(process.env.DATABASE_URL);
+const initDb = () => {
+    exports.db = (0, neon_http_1.drizzle)({ client: sql });
 };
 exports.initDb = initDb;

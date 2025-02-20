@@ -1,2 +1,2 @@
 export declare let db: any;
-export declare const initDb: () => Promise<void>;
+export declare const initDb: () => void;

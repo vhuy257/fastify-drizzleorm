@@ -1,7 +1,6 @@
 import { investRoutes } from "@api/routes";
 import fastify from "fastify";
 import { middleware } from "./modules/middleware";
-import { initDb } from "./db";
 import { Logger } from "./utils";
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -11,12 +10,8 @@ const port = 3000;
 const host = ("RENDER" in process.env) ? `0.0.0.0` : `localhost`;
 
 export const main = async () => {
-  const server = fastify({
-    bodyLimit: 1_000_000,
-    trustProxy: true,
-  });
+  const server = fastify();
 
-  await initDb();
   //await Redis.initialize();
 
   server.register(middleware);
@@ -51,7 +46,7 @@ export const main = async () => {
 
   server.listen({host: host, port: port }, (error, address) => {
     if (error) {
-      // Logger.error("INIT", error.message);
+      Logger.error("INIT", error.message);
       // throw new Error(error.message);
       server.log.error(error)
       process.exit(1)
